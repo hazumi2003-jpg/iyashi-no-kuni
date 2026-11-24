@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ルイ・エメロード | 住人名鑑</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f7f7ef;
+    color: #555555;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+}
+
+header {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.site-logo {
+    width: min(80%, 500px);
+    height: auto;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 25px 0 35px;
+}
+
+.page-title h1 {
+    color: #168B68;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    letter-spacing: 3px;
+    color: #168B68;
+    font-size: 12px;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    align-items: start;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #55555512;
+}
+
+.character-sheet {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.name {
+    color: #168B68;
+    font-size: 27px;
+    margin: 0 0 8px;
+}
+
+.catchcopy {
+    color: #168B68;
+    margin-bottom: 22px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 11px 8px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+td:first-child {
+    width: 34%;
+    color: #168B68;
+    font-weight: bold;
+}
+
+.section {
+    background: white;
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #55555512;
+}
+
+.section h2 {
+    color: #168B68;
+    font-size: 20px;
+    border-bottom: 2px solid #B8DDC9;
+    padding-bottom: 10px;
+}
+
+.voice {
+    background: #E8F5EF;
+    padding: 18px;
+    border-radius: 12px;
+    line-height: 1.9;
+    color: #176B50;
+}
+
+.back {
+    display: block;
+    width: fit-content;
+    margin: 35px auto;
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: #168B68;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back:hover {
+    background: #0F6B50;
+    transform: translateY(-3px);
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #9aab9c;
+    font-size: 12px;
+}
+
+@media (max-width: 650px) {
+    .profile {
+        grid-template-columns: 1fr;
+    }
+
+    .character-sheet {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}
+
+.character-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.character-nav a {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.character-nav .prev,
+.character-nav .back,
+.character-nav .next {
+    background: #168B68;
+    color: white;
+}
+
+.character-nav .back {
+    margin: 0;
+}
+
+.character-nav a:hover {
+    background: #0F6B50;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 650px) {
+    .character-nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .character-nav a {
+        width: 100%;
+        padding: 13px 10px;
+        font-size: 14px;
+    }
+}
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #168B68;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    background: #0F6B50;
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+</style>
+</head>
+
+<body>
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<header>
+    <img src="images/logo.png" alt="癒しの国での日常" class="site-logo">
+</header>
+
+<main>
+
+<div class="page-title">
+    <h1>ルイ・エメロード</h1>
+    <p>RUI EMERAUDE</p>
+</div>
+
+<section class="profile">
+
+    <div>
+        <img
+            src="images/characters/passion/sheets/ルイ.jpg"
+            alt="ルイ・エメロードのキャラクターシート"
+            class="character-sheet">
+    </div>
+
+    <div>
+        <h2 class="name">ルイ・エメロード</h2>
+        <p class="catchcopy">人間に憧れる機械人形</p>
+
+        <table>
+            <tr><td>モチーフ</td><td>宝石・エメラルド</td></tr>
+            <tr><td>種族</td><td>機械人形</td></tr>
+            <tr><td>年齢</td><td>不明</td></tr>
+            <tr><td>誕生日</td><td>3月17日</td></tr>
+            <tr><td>身長</td><td>167cm</td></tr>
+            <tr><td>出身地</td><td>パシオン街</td></tr>
+        </table>
+    </div>
+
+</section>
+
+<section class="section">
+    <h2>人物紹介</h2>
+    <p>
+        機械人形として生きているが、あまりにも人間らしい行動をするため、最初は人間だと思われがち。
+        <br><br>
+        しかし、彼自身は自分のことを人間になれなかった失敗作だと思っている。
+    </p>
+</section>
+
+<section class="section">
+    <h2>サンプルボイス</h2>
+    <div class="voice">
+        「僕のこと？人間じゃないよ……」
+    </div>
+</section>
+
+<div class="character-nav">
+    <a href="fessy.html" class="next">← 前のキャラクター：フェシー</a>
+    <a href="residents.html" class="back">住人名鑑へ戻る</a>
+    <a href="residents.html" class="next">住人名鑑へ戻る →</a>
+</div>
+
+</main>
+
+<footer>
+    © 癒しの国での日常
+</footer>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+</body>
+</html>

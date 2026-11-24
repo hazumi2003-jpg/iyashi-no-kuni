@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ファンアート | 癒しの国での日常</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #F7F7EF;
+    color: #405447;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+}
+
+header {
+    padding: 25px 20px;
+    text-align: center;
+    background: #47775C;
+}
+
+.site-logo {
+    width: min(80%, 500px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 55px 20px 70px;
+}
+
+h1 {
+    text-align: center;
+    color: #47775C;
+    font-size: 30px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #83A58B;
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.intro {
+    text-align: center;
+    color: #78877B;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 45px;
+}
+
+.fanart-section {
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 25px;
+    box-shadow: 0 5px 18px rgba(60, 90, 65, 0.08);
+}
+
+.section-title {
+    text-align: center;
+    color: #47775C;
+    font-size: 21px;
+    margin: 0 0 8px;
+}
+
+.section-caption {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.fanart-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.fanart-card {
+    background: #F9FAF6;
+    border-radius: 14px;
+    padding: 15px;
+    text-align: center;
+}
+
+.fanart-image {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    background: #F1F2EC;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: transform 0.25s;
+}
+
+.fanart-image:hover {
+    transform: scale(1.02);
+}
+
+.character-name {
+    color: #47775C;
+    font-size: 17px;
+    margin: 17px 0 5px;
+}
+
+.town-name {
+    color: #83A58B;
+    font-size: 12px;
+    margin: 0 0 8px;
+}
+
+.author-name {
+    color: #888;
+    font-size: 13px;
+    margin: 0;
+}
+
+.back-link {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 0;
+    padding: 12px 30px;
+    border-radius: 30px;
+    background: #47775C;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    background: #57946D;
+    transform: translateY(-3px);
+}
+
+/* 画像拡大表示 */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(20, 30, 23, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 900;
+    transition: 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 35px 12px 50px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .fanart-section {
+        padding: 22px 12px;
+    }
+
+    .fanart-list {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .fanart-image {
+        height: 300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="images/logo.png"
+         alt="癒しの国での日常"
+         class="site-logo">
+</header>
+
+<main>
+
+    <h1>ファンアート</h1>
+    <p class="subtitle">FAN ART GALLERY</p>
+
+    <p class="intro">
+        素敵な作品を贈ってくださった皆様、ありがとうございます。<br>
+        こちらは許可をいただいた作品を展示するギャラリーです。
+    </p>
+
+    <section class="fanart-section">
+
+        <h2 class="section-title">作品一覧</h2>
+        <p class="section-caption">ARTWORK COLLECTION</p>
+
+        <div class="fanart-list">
+
+            <!-- 1枚目 -->
+            <article class="fanart-card">
+                <img src="images/fanart/artwork_01.jpg"
+                     alt="ダイアナのファンアート"
+                     class="fanart-image">
+
+                <h3 class="character-name">ダイアナ</h3>
+                <p class="town-name">パーミチ街</p>
+                <p class="author-name">作者：ドウザイ様</p>
+            </article>
+
+            <!-- 2枚目 -->
+            <article class="fanart-card">
+                <img src="images/fanart/artwork_02.jpg"
+                     alt="蒼狐瑠璃のファンアート"
+                     class="fanart-image">
+
+                <h3 class="character-name">蒼狐瑠璃</h3>
+                <p class="town-name">夢見街</p>
+                <p class="author-name">作者：うさはな様</p>
+            </article>
+
+            <!-- 3枚目 -->
+            <article class="fanart-card">
+                <img src="images/fanart/artwork_03.jpg"
+                     alt="ヤーコートのファンアート"
+                     class="fanart-image">
+
+                <h3 class="character-name">ヤーコート</h3>
+                <p class="town-name">ラブト国</p>
+                <p class="author-name">作者：ドウザイ様</p>
+            </article>
+
+            <!-- 4枚目 -->
+            <article class="fanart-card">
+                <img src="images/fanart/artwork_04.jpg"
+                     alt="赤狐楓のファンアート"
+                     class="fanart-image">
+
+                <h3 class="character-name">赤狐楓</h3>
+                <p class="town-name">夢見街</p>
+                <p class="author-name">作者：猫墨様</p>
+            </article>
+
+        </div>
+    </section>
+
+    <a href="index.html" class="back-link">
+        トップページへ戻る
+    </a>
+
+</main>
+
+<!-- 画像拡大表示 -->
+<div class="lightbox" id="lightbox">
+    <img src="" alt="拡大画像" id="lightbox-image">
+</div>
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightbox-image");
+
+document.querySelectorAll(".fanart-image").forEach(img => {
+    img.addEventListener("click", () => {
+        lightboxImage.src = img.src;
+        lightbox.classList.add("active");
+    });
+});
+
+lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("active");
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        lightbox.classList.remove("active");
+    }
+});
+
+document.getElementById("back-to-top").addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>魔法学園 | 癒しの国での日常</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #F7F7EF;
+    color: #405447;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.8;
+}
+
+header {
+    padding: 25px 20px;
+    text-align: center;
+    background: #47775C;
+}
+
+.site-logo {
+    width: min(80%, 500px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 55px 22px 70px;
+}
+
+h1 {
+    text-align: center;
+    color: #47775C;
+    font-size: 30px;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #83A58B;
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 45px;
+}
+
+section {
+    margin-bottom: 45px;
+}
+
+.section-title {
+    color: #47775C;
+    font-size: 23px;
+    border-bottom: 2px solid #C8DFC9;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.content-card {
+    background: white;
+    border-radius: 16px;
+    padding: 27px;
+    box-shadow: 0 5px 18px rgba(60, 90, 65, 0.06);
+}
+
+.content-card p:first-child {
+    margin-top: 0;
+}
+
+.content-card p:last-child {
+    margin-bottom: 0;
+}
+
+.major-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.major-card {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    border-left: 5px solid #83B58B;
+    box-shadow: 0 4px 14px rgba(60, 90, 65, 0.05);
+}
+
+.major-card h3 {
+    margin: 0 0 8px;
+    color: #47775C;
+    font-size: 18px;
+}
+
+.major-card p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.grade-list {
+    display: grid;
+    gap: 12px;
+}
+
+.grade-item {
+    background: white;
+    border-radius: 12px;
+    padding: 17px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.grade-item strong {
+    color: #47775C;
+}
+
+.grade-item span {
+    color: #777;
+    font-size: 14px;
+}
+
+.uniform-image {
+    display: block;
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    margin: 0 auto 25px;
+    border-radius: 10px;
+}
+
+.color-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.color-item {
+    background: #F7F7EF;
+    padding: 13px 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.color-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.back-link {
+    display: block;
+    width: fit-content;
+    margin: 45px auto 0;
+    padding: 12px 30px;
+    border-radius: 30px;
+    background: #47775C;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    background: #57946D;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 35px 14px 50px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .major-grid,
+    .color-list {
+        grid-template-columns: 1fr;
+    }
+
+    .content-card {
+        padding: 20px;
+    }
+
+    .grade-item {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px;
+    }
+}
+
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+</style>
+</head>
+
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+
+<body>
+
+<header>
+    <img src="images/logo.png" alt="癒しの国での日常" class="site-logo">
+</header>
+
+<main>
+
+<h1>魔法学園</h1>
+<p class="subtitle">MAGIC ACADEMY</p>
+
+<section>
+    <h2 class="section-title">学園概要</h2>
+    <div class="content-card">
+        <p>
+            コンソラトゥール国のコンソラトゥール都市にある、
+            国内最高峰の魔法学園。
+        </p>
+        <p>
+            魔法を持って生まれた者は、基本的に入学試験に合格すれば
+            入学することができる。
+        </p>
+        <p>
+            多くの人々から憧れられている学園であり、
+            魔法を学ぶための様々な専攻が設けられている。
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">専攻紹介</h2>
+
+    <div class="major-grid">
+
+        <div class="major-card">
+            <h3>黒魔法専攻</h3>
+            <p>主に攻撃系の魔法を学ぶ専攻。学園で最も人気が高い。</p>
+        </div>
+
+        <div class="major-card">
+            <h3>白魔法専攻</h3>
+            <p>主に回復や防御に関する魔法を学ぶ専攻。</p>
+        </div>
+
+        <div class="major-card">
+            <h3>魔法剣士専攻</h3>
+            <p>魔法剣士を目指すための専攻。</p>
+        </div>
+
+        <div class="major-card">
+            <h3>召喚士専攻</h3>
+            <p>召喚士を目指すための専攻。</p>
+        </div>
+
+        <div class="major-card">
+            <h3>賢者専攻</h3>
+            <p>黒魔法と白魔法の両方の知識が必要となる専攻。能力の高い生徒も多く選ぶ。</p>
+        </div>
+
+        <div class="major-card">
+            <h3>個人専攻</h3>
+            <p>専攻とは別に、個別の科目を選んで学ぶこともできる。</p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">学年制度</h2>
+
+    <div class="grade-list">
+        <div class="grade-item">
+            <strong>下級生</strong>
+            <span>10〜12歳 ／ 賢者専攻には入れない</span>
+        </div>
+
+        <div class="grade-item">
+            <strong>中級生</strong>
+            <span>13〜15歳 ／ 15歳から賢者専攻が可能</span>
+        </div>
+
+        <div class="grade-item">
+            <strong>高級生</strong>
+            <span>16〜19歳 ／ 個人専攻も選択可能</span>
+        </div>
+    </div>
+
+    <div class="content-card" style="margin-top:15px;">
+        <p>
+            20歳以上になると学園を卒業し、仕事に就くことができる。
+            就職は可能だが、働くかどうかは本人の自由。
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">制服紹介</h2>
+
+    <div class="content-card">
+        <img
+            src="images/academy_uniform.jpg"
+            alt="魔法学園の制服デザイン"
+            class="uniform-image"
+        >
+
+        <p>
+            制服の基本デザインは全専攻共通。
+            専攻によってブローチの色が異なる。
+        </p>
+
+        <h3 style="color:#47775C;">専攻別ブローチカラー</h3>
+
+        <div class="color-list">
+
+            <div class="color-item">
+                <span class="color-dot" style="background:#222;"></span>
+                黒魔法専攻
+            </div>
+
+            <div class="color-item">
+                <span class="color-dot" style="background:#fff; border:1px solid #ccc;"></span>
+                白魔法専攻
+            </div>
+
+            <div class="color-item">
+                <span class="color-dot" style="background:#E7C94A;"></span>
+                魔法剣士専攻
+            </div>
+
+            <div class="color-item">
+                <span class="color-dot" style="background:#4686C6;"></span>
+                召喚士専攻
+            </div>
+
+            <div class="color-item">
+                <span class="color-dot" style="background:#57946D;"></span>
+                賢者専攻
+            </div>
+
+            <div class="color-item">
+                <span class="color-dot" style="background:#C94B4B;"></span>
+                個人専攻
+            </div>
+
+        </div>
+
+        <p style="margin-top:22px;">
+            帽子の着用は自由だが、コートは必ず着用しなければならない。
+            コートは魔法を使用する際にも重要な役割を持っている。
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">その他の制度</h2>
+
+    <div class="content-card">
+        <p>
+            学園では、特別な条件を満たした場合に限り、
+            転入が認められることがある。
+        </p>
+        <p>
+            特に強い魔力を持つ生徒が、魔力を安定して扱えるように
+            学ぶための転入などがあるが、転入生は珍しい。
+        </p>
+    </div>
+</section>
+
+<a href="index.html" class="back-link">トップページへ戻る</a>
+
+</main>
+
+</body>
+</html>

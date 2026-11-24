@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アオイ・アジュール | 癒しの国での日常</title>
+
+<style>
+:root {
+    --main: #477CA8;
+    --light: #DCEAF4;
+    --pale: #EDF4F8;
+    --text: #354653;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    background: #F7F7EF;
+    color: var(--text);
+    line-height: 1.8;
+}
+
+header {
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.site-logo {
+    width: min(80%, 500px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 25px 0 40px;
+}
+
+.page-title h1 {
+    color: var(--main);
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.page-title p {
+    color: #8295A3;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    align-items: start;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(50, 75, 95, 0.07);
+}
+
+.sheet {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.profile-info h2 {
+    color: var(--main);
+    border-bottom: 2px solid var(--light);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #E8EDF0;
+    text-align: left;
+}
+
+th {
+    color: var(--main);
+    width: 32%;
+    font-weight: 600;
+}
+
+.section {
+    margin-top: 45px;
+}
+
+.section h2 {
+    color: var(--main);
+    border-left: 5px solid var(--main);
+    padding-left: 13px;
+    margin-bottom: 20px;
+}
+
+.intro, .voice {
+    background: white;
+    padding: 22px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(50, 75, 95, 0.05);
+}
+
+.voice {
+    background: var(--pale);
+    color: #3D6380;
+    font-size: 18px;
+}
+
+/* CHARACTER STORY */
+.story-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(50, 75, 95, 0.05);
+}
+
+.story-title {
+    text-align: center;
+    color: var(--main);
+    font-size: 23px;
+    margin: 0 0 8px;
+}
+
+.story-author {
+    text-align: center;
+    color: #8295A3;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.story-body {
+    line-height: 2.2;
+    overflow-wrap: anywhere;
+}
+
+.story-body p {
+    margin: 0 0 20px;
+}
+
+.story-end {
+    text-align: center;
+    color: var(--main);
+    margin-top: 35px !important;
+    letter-spacing: 2px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.gallery img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 18px rgba(50, 75, 95, 0.18);
+}
+
+.back {
+    display: block;
+    width: fit-content;
+    margin: 45px auto 25px;
+    padding: 10px 28px;
+    border-radius: 30px;
+    background: var(--main);
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.back:hover {
+    opacity: 0.8;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #999;
+    font-size: 13px;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 25, 35, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+@media (max-width: 650px) {
+    .profile {
+        grid-template-columns: 1fr;
+    }
+
+    .sheet {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-title h1 {
+        font-size: 25px;
+    }
+
+    .story-card {
+        padding: 22px 18px;
+    }
+
+    .story-title {
+        font-size: 20px;
+    }
+}
+
+
+.character-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.character-nav a {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.character-nav .prev,
+.character-nav .back {
+    background: #E8EDF2;
+    color: #45617A;
+}
+
+.character-nav .back {
+    margin: 0;
+}
+
+.character-nav .next {
+    background: #527FA8;
+    color: white;
+}
+
+.character-nav a:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+@media (max-width: 650px) {
+    .character-nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .character-nav a {
+        width: 100%;
+        padding: 13px 10px;
+        font-size: 14px;
+    }
+}
+
+
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+</style>
+</head>
+
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+
+<body>
+
+<header>
+    <img src="images/logo.png" alt="癒しの国での日常" class="site-logo">
+</header>
+
+<main>
+
+    <div class="page-title">
+        <h1>アオイ・アジュール</h1>
+        <p>AOI AZURE</p>
+    </div>
+
+    <section class="profile">
+        <div>
+            <img
+                src="images/characters/passion/sheets/アオイ.jpg"
+                alt="アオイのキャラクターシート"
+                class="sheet">
+        </div>
+
+        <div class="profile-info">
+            <h2>PROFILE</h2>
+
+            <table>
+                <tr><th>名前</th><td>アオイ・アジュール</td></tr>
+                <tr><th>モチーフ</th><td>青</td></tr>
+                <tr><th>種族</th><td>人間</td></tr>
+                <tr><th>年齢</th><td>18歳</td></tr>
+                <tr><th>身長</th><td>176cm</td></tr>
+                <tr><th>出身地</th><td>パシオン街</td></tr>
+                <tr><th>誕生日</th><td>7月18日</td></tr>
+                <tr><th>所属</th><td>魔法学園</td></tr>
+                <tr><th>専攻</th><td>賢者専攻</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>INTRODUCTION</h2>
+        <div class="intro">
+            <p>優秀なお金持ちの息子。</p>
+            <p>穏やかで優しい性格。周りに騒がしい人が多く、苦労人。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>FUTURE</h2>
+        <div class="intro">
+            <p>将来、国王の執事になる予定。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>SAMPLE VOICE</h2>
+        <div class="voice">
+            「今日は、なんの用事で？またあの子ですか……」
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>CHARACTER STORY</h2>
+
+        <div class="story-card">
+            <h3 class="story-title">『青く透き通った意志とは。』</h3>
+            <div class="story-author">アジュール・アオイ</div>
+
+            <div class="story-body">
+
+                <p>
+                    アジュール家は、優秀な貴族の家だった。
+                </p>
+
+                <p>
+                    親も、親戚も、優秀な家庭で、育ってきた。
+                </p>
+
+                <p>
+                    だから、自分もそんなふうになるんだろうと。
+                </p>
+
+                <p>
+                    優秀な学校を出て、ちゃんとした仕事に就き、家族も大切にする。
+                </p>
+
+                <p>
+                    何気ない普通な、レールをそのまま辿ると思ってた。
+                </p>
+
+                <p>
+                    しかし、僕は、ある日、
+                </p>
+
+                <p>
+                    アオイ「えっ、なんか出た…濡れたし…」
+                </p>
+
+                <p>
+                    勉強中のとき、思わず伸びをするときに、手を振り上げたとき、
+                </p>
+
+                <p>
+                    力が入ったのか、水が降ってきたのだった。
+                </p>
+
+                <p>
+                    懸命に書いたノートはびしょ濡れで、
+                </p>
+
+                <p>
+                    このときに、自分に魔力が現れたということに気付いた。
+                </p>
+
+                <p>
+                    しかし、そのまま普通の優秀な学校に行ったって、
+                </p>
+
+                <p>
+                    この力をどうするべきなのか、
+                </p>
+
+                <p>
+                    そんなふうに心が揺らいだ。
+                </p>
+
+                <p>
+                    頭の中で色々考えてるうちに、
+                </p>
+
+                <p>
+                    とある友だちを思い出した。
+                </p>
+
+                <p>
+                    すぐに、支度をして、その子のもとに行った。
+                </p>
+
+                <p>
+                    アオイ「シオン…っ！教えてよ！」
+                </p>
+
+                <p>
+                    シオン「どうしたの？」
+                </p>
+
+                <p>
+                    アオイ「僕は…どうすれば…」
+                </p>
+
+                <p>
+                    シオン「？？？なにがあったの？」
+                </p>
+
+                <p>
+                    アオイ「なんか魔力が…現れて、これからどうすれば？」
+                </p>
+
+                <p>
+                    シオン「じゃ一緒にあの都市の方の魔法学園に行こう！」
+                </p>
+
+                <p>
+                    アオイ「！」
+                </p>
+
+                <p>
+                    なぜならこの子は生まれつき魔力があった。
+                </p>
+
+                <p>
+                    だから、10歳になったら行くんだってずっと言ってた。
+                </p>
+
+                <p>
+                    じゃ僕も、行こうと思った。
+                </p>
+
+                <p>
+                    親に話したが、許してくれなかった。
+                </p>
+
+                <p>
+                    魔法なんて用途がないじゃないかなど、
+                </p>
+
+                <p>
+                    色々言われた。
+                </p>
+
+                <p>
+                    だけど思った。
+                </p>
+
+                <p>
+                    そのまま親と同じ道で生きるのもいいこともあるだろうが、
+                </p>
+
+                <p>
+                    それじゃ自分の意志じゃないことに気付いた。
+                </p>
+
+                <p>
+                    アオイ「ごめんなさい。僕は、好きなことをしていたい。だから、あの魔法学園に行く。」
+                </p>
+
+                <p>
+                    そう伝えた。
+                </p>
+
+                <p>
+                    親はずっと否定をしたが、
+                </p>
+
+                <p>
+                    スルーした。
+                </p>
+
+                <p>
+                    その後は、近くの図書館で、魔法学園のことや、コンソラトゥール都市のことを調べた。
+                </p>
+
+                <p>
+                    調べてるうちに、自分のやりたいことが見つかった。
+                </p>
+
+                <p>
+                    それは、『国のために、役に立ちたい。王国の執事でもしてみたい』と。
+                </p>
+
+                <p>
+                    そんな夢を抱え、シオンと10歳になり、一緒に魔法学園に入学した。
+                </p>
+
+                <p>
+                    試験も無事に通り、安心した僕は、ここで自分らしく生きようとしたのである。
+                </p>
+
+                <p>
+                    もしかしたら、あの頃に会ってなかったら、ずっと、
+                </p>
+
+                <p>
+                    自分の意志などで生きてなかったかもねって
+                </p>
+
+                <p>
+                    たまに思うが、最近の君は、ちょっと残念だよ。
+                </p>
+
+                <p>
+                    嫌いじゃないけどね。
+                </p>
+
+                <p>
+                    まあむしろ……。
+                </p>
+
+                <p>
+                    いやなんでもない。
+                </p>
+
+                <p>
+                    とりあえず、君にも会えて、ここにも入れて、良かったと
+                </p>
+
+                <p>
+                    今は思う。
+                </p>
+
+                <p>
+                    水のように透き通った意志を大事に抱えてく。
+                </p>
+
+                <p>
+                    アジュール・アオイ　キャラクターストーリー。
+                </p>
+
+                <p class="story-end">End.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>GALLERY</h2>
+        <div class="gallery">
+            <img src="images/characters/passion/gallery/aoi/aoi_01.jpg" alt="アオイのイラスト1" onclick="openLightbox(this.src)">
+            <img src="images/characters/passion/gallery/aoi/aoi_02.jpg" alt="アオイのイラスト2" onclick="openLightbox(this.src)">
+            <img src="images/characters/passion/gallery/aoi/aoi_03.png" alt="アオイのイラスト3" onclick="openLightbox(this.src)">
+            <img src="images/characters/passion/gallery/aoi/aoi_04.png" alt="アオイのイラスト4" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+
+    <div class="character-nav">
+        <a href="shion.html" class="prev">← 前のキャラクター：シオン</a>
+        <a href="residents.html" class="back">住人名鑑へ戻る</a>
+        <a href="etoile.html" class="next">次のキャラクター：エトワール →</a>
+    </div>
+
+</main>
+
+<footer>
+    癒しの国での日常
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-image" src="" alt="拡大画像">
+</div>
+
+<script>
+function openLightbox(src) {
+    document.getElementById("lightbox-image").src = src;
+    document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>

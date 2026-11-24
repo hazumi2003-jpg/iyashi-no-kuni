@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>町の紹介｜癒しの国での日常</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f7ef;
+      color: #405d49;
+      font-family: "Yu Gothic", sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header img {
+      width: min(75%, 380px);
+      height: auto;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 25px 0 40px;
+    }
+
+    .page-title h1 {
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 5px;
+    }
+
+    .page-title p {
+      color: #78977c;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    .town-list {
+    width: min(92%, 950px);
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: start;
+    }
+
+    .town-card {
+      background: #fffef8;
+      border: 1px solid #d5e3d4;
+      border-radius: 15px;
+      padding: 25px 18px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(71, 119, 92, 0.06);
+    }
+
+    .symbol {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 12px;
+    }
+
+    .legend {
+      width: 100%;
+      display: block;
+      border-radius: 9px;
+      margin-top: 18px;
+    }
+
+    .town-card h2 {
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin: 8px 0;
+    }
+
+    .town-card p {
+      font-size: 13px;
+      color: #78977c;
+    }
+
+    .back {
+      display: block;
+      width: fit-content;
+      margin: 45px auto;
+      padding: 12px 30px;
+      color: #47775c;
+      text-decoration: none;
+      border: 1px solid #d5e3d4;
+      border-radius: 30px;
+      background: #fffef8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #8ba28b;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .town-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+.town-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #47775C;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.town-link:hover {
+    color: #83B58B;
+    transform: translateX(4px);
+}
+
+.legend-text,
+.guardian {
+    margin-top: 30px;
+    padding: 25px;
+    background: #F7F7EF;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.9;
+}
+
+.legend-text h3,
+.guardian h3 {
+    color: #47775C;
+    margin-bottom: 18px;
+}
+
+.legend-text h4,
+.guardian h4 {
+    color: #47775C;
+    margin-bottom: 12px;
+}
+
+.legend-text blockquote {
+    margin: 25px 0 0;
+    padding: 20px;
+    border-left: 4px solid #B65A42;
+    background: white;
+    color: #765044;
+    font-style: italic;
+    line-height: 1.9;
+}
+
+.symbol-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #47775C;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.symbol-link img {
+    transition: 0.25s;
+}
+
+.symbol-link:hover img {
+    transform: scale(1.05);
+}
+
+.symbol-link:hover span {
+    color: #83B58B;
+}
+
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+  </style>
+</head>
+
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="癒しの国での日常">
+  </header>
+
+  <section class="page-title">
+    <p>TOWN GUIDE</p>
+    <h1>町の紹介</h1>
+  </section>
+
+  <main class="town-list">
+
+   
+
+  <section class="town-card">
+   <a href="residents.html#passion" class="symbol-link">
+    <img src="images/town_symbol_01.jpg" class="symbol" alt="パシオン街のシンボル">
+    <span>住人を見る →</span>
+</a>
+
+    <h2>情熱の街 パシオン街</h2>
+
+    <p>
+        赤き炎のように、鮮やかに、美しく生きる人々の願いが、
+        この街に根付いている。
+    </p>
+
+    <img src="images/legend_01.jpg" class="legend" alt="パシオン街の伝説">
+
+    <div class="legend-text">
+        <h3>📜 街に伝わる伝説</h3>
+        <h4>炎を操る勇者</h4>
+
+        <p>
+            ある日、戦記時代にて、パシオン街出身の勇者が、
+            炎を扱い戦いに向かった。
+        </p>
+
+        <p>
+            勇者は一人で戦場に向かった。
+            そして、勢いで攻めてくる敵たちを前に、
+            素手で大きな炎を出し、辺りを燃やし尽くしたと言う。
+        </p>
+
+        <p>
+            そんな勇者の像が、パシオン街の城の広場に建てられている。
+        </p>
+
+        <blockquote>
+            「新たなる時代を切り開く為の炎を
+            無駄にしては行けない。永遠のためだ。」
+        </blockquote>
+    </div>
+
+    <div class="guardian">
+        <h3>✧ パシオン街の守り神</h3>
+        <h4>炎の女神 ウェティアー</h4>
+
+        <p>
+            パシオン街を作り上げ、パシオン街のお城の炎を守っている女神。
+        </p>
+
+        <p>
+            彼女の存在については、存在しているのか、していないのかという噂が絶えない。
+            一応、存在自体はしているものの、それが人型なのかは分かっていない。
+        </p>
+
+        <p>
+            たまに、お城の炎が彼女自身なのかもしれないと言われている。
+            その炎は特殊なもので、何をしても消えることはない。
+        </p>
+
+        <p>
+            コンソラトゥール国の街の中では、3番目に長寿の女神。
+        </p>
+    </div>
+</section>
+
+    <section class="town-card">
+    <a href="residents.html#xiwan" class="symbol-link">
+        <img src="images/town_symbol_02.jpg"
+             class="symbol" alt="希望街のシンボル">
+        <span>住人を見る →</span>
+    </a>
+
+    <h2>希望の街 希望街</h2>
+
+    <p>
+        輝く光のように明るく美しく生きる人々の願いが、
+        この街に根付いている。
+    </p>
+
+    <img src="images/legend_02.jpg" class="legend" alt="希望街の伝説">
+
+    <div class="legend-text">
+        <h3>📜 街に伝わる伝説</h3>
+        <h4>赤き龍と水のベール</h4>
+
+        <p>
+            昔、この街には大きな龍が存在していた。
+            赤く、美しい体を持つ龍だった。
+        </p>
+
+        <p>
+            しかし、辺りは戦争の真っただ中。
+            そう、戦記時代である。
+        </p>
+
+        <p>
+            困った住民たちは、龍に願いを託した。
+            この街を守ってくれと。
+        </p>
+
+        <p>
+            龍は頷き、大きな体を奮い立たせ、
+            近くの海を使い、大きく優しいカバーで
+            街全体を包み込んだ。
+            それは、まるで水のベールのようだった。
+        </p>
+
+        <p>
+            龍のしっぽで戦場の人々を払い、
+            敵国は逃げていった。
+        </p>
+
+        <p>
+            そんな龍は、いつの間にか姿を消してしまった。
+            住民たちはその龍を尊敬し、
+            街のメインストリートに像を建てた。
+        </p>
+
+        <blockquote>
+            「何を言っても彼らは可愛いもんじゃ」
+        </blockquote>
+    </div>
+
+    <div class="guardian">
+        <h3>✧ 希望街の守り神</h3>
+        <h4>光の女神 北斗</h4>
+
+        <p>
+            希望街を統治している女神。
+            お目にかかることは少ないが、
+            実際に会うことができる神様。
+        </p>
+
+        <p>
+            性格は明るく、冗談も言うタイプ。
+            しかし、人間の常識的なものが少し理解できておらず、
+            世間離れした行動をしてしまう時がある。
+        </p>
+
+        <h4>紅花との関係</h4>
+
+        <p>
+            戦記時代に希望街を守ってくれた龍、
+            現紅花（ホンファ）にはとても感謝している。
+        </p>
+
+        <p>
+            その感謝から、メインストリートに紅花の石像を作った。
+            しかし、紅花からは「恥ずかしい」と言われてしまった。
+        </p>
+
+        <p>
+            結局、なんやかんやで許され、
+            今では人気スポットになっている。
+        </p>
+
+        <p>
+            コンソラトゥール国の街の中では、
+            1番長寿の女神。
+        </p>
+    </div>
+</section>
+    
+<section class="town-card">
+    <a href="residents.html#yumemi" class="symbol-link">
+        <img src="images/town_symbol_03.jpg"
+             class="symbol" alt="夢見街のシンボル">
+        <span>住人を見る →</span>
+    </a>
+    
+    <h2>夢の街 夢見街</h2>
+
+    <p>
+        霧のように深く美しく生きる人々の願いが、
+        この街に根付いている。
+    </p>
+
+    <img src="images/legend_03.jpg" class="legend" alt="夢見街の伝説">
+
+    <div class="legend-text">
+        <h3>📜 街に伝わる伝説</h3>
+        <h4>夢見の少女</h4>
+
+        <p>
+            ある日、この街の夜には不気味な妖怪がいると騒がれていた。
+            しかし、その正体を知る者は誰もいなかった。
+        </p>
+
+        <p>
+            そんな中、とある少女が夢を見て、予言を受けた。
+            その少女の言うことは本当に起きた。
+        </p>
+
+        <p>
+            そして、妖怪による仕業も、
+            その少女のお陰で被害が減っていった。
+        </p>
+
+        <p>
+            少女は人々から崇められていく。
+            夢見の少女。
+        </p>
+
+        <p>
+            この後、その少女の家系は予言者になり、
+            今も存在している。
+        </p>
+
+        <p>
+            本人たちがどう思っているのかは分からないが、
+            この街の為なら、きっといい事だろう。
+        </p>
+
+        <blockquote>
+            「別に嫌じゃないけど、必要以上に反応されるのは嫌ね。
+            期待って荷が重いわね。」
+        </blockquote>
+    </div>
+
+    <div class="guardian">
+        <h3>✧ 夢見街の守り神</h3>
+        <h4>霧の神様 霧野様</h4>
+
+        <p>
+            普段は街に現れないが、時々早朝に神社などにふらっと現れ、
+            掃除をしていたりする心優しい神様。
+        </p>
+
+        <p>
+            今も信仰はされているが、最近はその存在を知らない人や、
+            見たことがない人もいるため、本当に霧のようになっている。
+        </p>
+
+        <p>
+            ちなみに、夢予言の巫女さんの夢にも出てくるらしい。
+            そもそも彼が予言を告げているのかもしれない。
+        </p>
+    </div>
+</section>
+ 
+<section class="town-card">
+    <a href="residents.html#pamichi" class="symbol-link">
+        <img src="images/town_symbol_04.jpg"
+             alt="パーミチ街のシンボル" class="symbol">
+        <span>住人を見る →</span>
+    </a>
+
+    <h2>記憶の街 パーミチ街</h2>
+    <p>
+        記憶の街として存在している街。<br>
+        雪のように儚く美しく生きる人々の願いが、この街に根付いている。
+    </p>
+
+    <img src="images/legend_04.jpg" alt="パーミチ街の伝説" class="legend">
+
+    <div class="legend-text">
+        <h3>✧ 雪山で出会った不思議な生き物</h3>
+        <p>
+            ある寒い日、パーミチ街を訪れた家族が山で遭難してしまった。<br>
+            途方に暮れていたその時、奥の方に見慣れない人影が現れた。
+        </p>
+        <p>
+            それは大きく、人のようでいて人とは違う生き物だった。<br>
+            家族はその姿を見て、雪男なのではないかと思った。
+        </p>
+        <p>
+            しかし、その生き物は家族に向かって手招きをした。<br>
+            不安を抱えながらも後をついていくと、一軒のコテージにたどり着いた。
+        </p>
+        <p>
+            生き物は、これを使ってほしいと言うように指を差した。<br>
+            家族は感謝を伝え、その生き物に言葉や料理を教えた。
+        </p>
+        <p>
+            そしていつしか、その生き物は人間の生活に馴染んでいったという。
+        </p>
+
+        <blockquote>
+            「生きるっていいことだよ。君もそうでしょう？」
+        </blockquote>
+    </div>
+
+    <div class="guardian">
+        <h3>✧ パーミチ街の守り神</h3>
+        <h4>氷の女神 リオー</h4>
+        <p>
+            パーミチ街にある湖には、大きな氷が存在している。<br>
+            その氷の中には、蹲るように座っている女神の姿が見える。
+        </p>
+        <p>
+            湖には、誰も中へ入ることができないようにバリアが張られている。<br>
+            そのため、近くまで行くことはできても、女神の姿が少し見えるだけで、近づくことはできない。
+        </p>
+    </div>
+</section>
+
+<section class="town-card">
+    <h2>コンソラトゥール都市</h2>
+    <p>メイン都市</p>
+
+<p>
+  コンソラトゥール国の中心に位置する、国のメイン都市。
+  <br>
+  大きな王宮の城がそびえ立ち、南の方には魔法学園が存在している。
+  <br>
+  風が穏やかに吹き、草木の香りが漂う美しい場所。
+  城下町にはさまざまな店やガーデンがあり、
+  穏やかで心地よい景色が広がっている。
+</p>
+
+    <a href="academy.html" class="town-link">
+        魔法学園について詳しく見る →
+    </a>
+
+<a href="residents.html#consolatour" class="town-link">
+    住人を見る →
+</a>
+
+</section>
+
+    <section class="town-card">
+      <h2>願望の森 ウィッシュ森</h2>
+
+<p>
+  願望の森として存在する、コンソラトゥール国の北に広がる広大な森。
+  <br>
+  森の奥へと進んでいくと、夢想の村として知られるレヴリー村が存在している。
+  <br>
+  レヴリー村の周辺まで近づくと、辺りにはキラキラとしたホワホワが舞い始める。
+  まるで夢の中に迷い込んだかのような、可愛らしく不思議な景色が広がっている。
+</p>
+
+    </section>
+
+    <section class="town-card">
+      <h2>夢想の村 レヴリー村</h2>
+
+<p>
+  夢想の村と呼ばれる、ウィッシュ森の奥に存在する集落。
+  <br>
+  ここにはエルフが多く暮らしており、
+  エルフ独自の文化や生活様式を大切にしながら日々を過ごしている。
+  <br>
+  森の奥深くに位置する、エルフたちの暮らしが息づく村。
+</p>
+
+<a href="residents.html#revry" class="town-link">
+    住人を見る →
+</a>
+
+    </section>
+
+  </main>
+
+  <a href="index.html" class="back">トップページへ戻る</a>
+
+  <footer>
+    癒しの国での日常
+  </footer>
+
+</body>
+</html>

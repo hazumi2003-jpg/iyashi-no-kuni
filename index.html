@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>癒しの国での日常</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f7ef;
+      color: #405d49;
+      font-family: "Yu Gothic", sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 35px 20px 20px;
+    }
+
+.site-logo {
+  width: min(80%, 500px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+    header p {
+      color: #78977c;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: clamp(25px, 5vw, 40px);
+      letter-spacing: 3px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .hero {
+      width: min(90%, 1050px);
+      margin: 20px auto;
+    }
+
+    .hero img {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+    }
+
+    .intro {
+      text-align: center;
+      padding: 20px;
+      line-height: 2;
+    }
+
+  .menu {
+  max-width: 850px;
+  margin: 35px auto 60px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.menu a {
+  display: block;
+  padding: 30px 15px;
+  text-align: center;
+  text-decoration: none;
+  color: #47775c;
+  background: #fffef8;
+  border-radius: 14px;
+  border: 1px solid #d5e3d4;
+  letter-spacing: 3px;
+  font-size: 16px;
+  transition: 0.2s;
+  box-shadow: 0 3px 10px rgba(71, 119, 92, 0.06);
+}
+
+.menu a:hover {
+  background: #e7efe5;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(71, 119, 92, 0.12);
+}
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #8ba28b;
+      font-size: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .menu {
+        gap: 10px;
+      }
+
+      .menu a {
+        padding: 19px 5px;
+        font-size: 13px;
+      }
+    }
+
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+/* ファンアート展示 */
+.fanart-preview {
+    max-width: 1000px;
+    margin: 50px auto 65px;
+    padding: 30px 0;
+    background: #fffef8;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(60, 90, 65, 0.06);
+}
+
+.fanart-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.fanart-heading a {
+    color: #47775c;
+    text-decoration: none;
+    font-size: 22px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.fanart-heading p {
+    color: #83A58B;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.fanart-track {
+    display: flex;
+    width: max-content;
+    gap: 18px;
+    animation: fanart-scroll 32s linear infinite;
+}
+
+.fanart-preview:hover .fanart-track {
+    animation-play-state: paused;
+}
+
+.fanart-track a {
+    display: block;
+    width: 190px;
+    flex-shrink: 0;
+}
+
+.fanart-track img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    background: #F1F2EC;
+    border-radius: 10px;
+}
+
+@keyframes fanart-scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 600px) {
+    .fanart-track a {
+        width: 150px;
+    }
+
+    .fanart-track img {
+        height: 150px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fanart-track {
+        animation: none;
+    }
+}
+
+
+
+/* ご案内コーナー */
+.guide-section {
+    max-width: 850px;
+    margin: 55px auto 45px;
+    padding: 0 20px;
+}
+
+.guide-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.guide-heading h2 {
+    color: #47775c;
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+}
+
+.guide-heading p {
+    color: #83A58B;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.guide-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.guide-card {
+    display: block;
+    padding: 25px 12px;
+    text-align: center;
+    text-decoration: none;
+    color: #47775c;
+    background: #fffef8;
+    border: 1px solid #d5e3d4;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(71, 119, 92, 0.06);
+    transition: 0.2s;
+}
+
+.guide-card:hover {
+    background: #e7efe5;
+    transform: translateY(-3px);
+}
+
+.guide-card strong {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.guide-card span {
+    display: block;
+    color: #78977c;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+    .guide-cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .guide-card {
+        padding: 19px 12px;
+    }
+}
+
+
+  </style>
+</head>
+
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+
+<body>
+
+  <header>
+  <img src="images/logo.png" alt="癒しの国での日常" class="site-logo">
+</header>
+
+  <main>
+    <div class="hero">
+      <img src="images/main.jpg" alt="癒しの国での日常">
+    </div>
+
+    <section class="intro">
+      <p>
+        魔法と日常が織りなす、<br>
+        さまざまな町と人々の物語。
+      </p>
+    </section>
+
+    <nav class="menu">
+      <a href="world.html">世界案内</a>
+      <a href="towns.html">町の紹介</a>
+      <a href="residents.html">住人名鑑</a>
+      <a href="gallery.html">ギャラリー</a>
+    </nav>
+
+
+<section class="guide-section">
+
+    <div class="guide-heading">
+        <h2>ご案内</h2>
+        <p>INFORMATION</p>
+    </div>
+
+    <div class="guide-cards">
+
+        <a href="fanart-guide.html" class="guide-card">
+            <strong>FAN ART GUIDE</strong>
+            <span>ファンアートの掲載について</span>
+        </a>
+
+        <a href="anniversary.html" class="guide-card">
+            <strong>ANNIVERSARY</strong>
+            <span>大切な記念日と周年の記録</span>
+        </a>
+
+        <a href="information.html" class="guide-card">
+            <strong>SITE INFORMATION</strong>
+            <span>このサイトについて・更新情報</span>
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="fanart-preview">
+
+    <div class="fanart-heading">
+        <a href="fanart.html">FAN ART GALLERY →</a>
+        <p>みんなから届いた、素敵な贈り物。</p>
+    </div>
+
+    <div style="overflow: hidden;">
+        <div class="fanart-track">
+
+            <a href="fanart.html">
+                <img src="images/fanart/artwork_01.jpg" alt="ダイアナのファンアート">
+            </a>
+
+            <a href="fanart.html">
+                <img src="images/fanart/artwork_02.jpg" alt="蒼狐瑠璃のファンアート">
+            </a>
+
+            <a href="fanart.html">
+                <img src="images/fanart/artwork_03.jpg" alt="ヤーコートのファンアート">
+            </a>
+
+            <a href="fanart.html">
+                <img src="images/fanart/artwork_04.jpg" alt="赤狐楓のファンアート">
+            </a>
+
+            <!-- ループ用の複製 -->
+            <a href="fanart.html" aria-hidden="true" tabindex="-1">
+                <img src="images/fanart/artwork_01.jpg" alt="">
+            </a>
+
+            <a href="fanart.html" aria-hidden="true" tabindex="-1">
+                <img src="images/fanart/artwork_02.jpg" alt="">
+            </a>
+
+            <a href="fanart.html" aria-hidden="true" tabindex="-1">
+                <img src="images/fanart/artwork_03.jpg" alt="">
+            </a>
+
+            <a href="fanart.html" aria-hidden="true" tabindex="-1">
+                <img src="images/fanart/artwork_04.jpg" alt="">
+            </a>
+
+        </div>
+    </div>
+
+</section>
+
+
+  </main>
+
+  <footer>
+    癒しの国での日常
+  </footer>
+
+</body>
+</html>
+

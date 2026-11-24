@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>シオン・ヴィオレ | 住人名鑑</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f7f7ef;
+    color: #405747;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+}
+
+header {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.site-logo {
+    width: min(80%, 500px);
+    height: auto;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 25px 0 35px;
+}
+
+.page-title h1 {
+    color: #8055a6;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    letter-spacing: 3px;
+    color: #9983a8;
+    font-size: 12px;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    align-items: start;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #59436a12;
+}
+
+.character-sheet {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.name {
+    color: #8055a6;
+    font-size: 27px;
+    margin: 0 0 8px;
+}
+
+.catchcopy {
+    color: #a184b6;
+    margin-bottom: 22px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 11px 8px;
+    border-bottom: 1px solid #eee7f1;
+}
+
+td:first-child {
+    width: 34%;
+    color: #9676a9;
+    font-weight: bold;
+}
+
+.section {
+    background: white;
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #59436a12;
+}
+
+.section h2 {
+    color: #8055a6;
+    font-size: 20px;
+    border-bottom: 2px solid #e8dcef;
+    padding-bottom: 10px;
+}
+
+.voice {
+    background: #f5eff9;
+    padding: 18px;
+    border-radius: 12px;
+    line-height: 1.9;
+    color: #725587;
+}
+
+.back {
+    display: block;
+    width: fit-content;
+    margin: 35px auto;
+    padding: 12px 28px;
+    border-radius: 30px;
+    background: #8055a6;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back:hover {
+    background: #684286;
+    transform: translateY(-3px);
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #9aab9c;
+    font-size: 12px;
+}
+
+@media (max-width: 650px) {
+    .profile {
+        grid-template-columns: 1fr;
+    }
+
+    .character-sheet {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}
+
+
+/* シオン・ギャラリー */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.gallery img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px #8055a633;
+}
+
+/* 拡大表示 */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #17131de8;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: white;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+.character-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.character-nav a {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.character-nav .back {
+    margin: 0;
+    background: #8055a6;
+    color: white;
+}
+
+.character-nav .back:hover {
+    background: #684286;
+    transform: translateY(-3px);
+}
+
+.character-nav .next {
+    background: #7656A5;
+    color: white;
+}
+
+.character-nav .next:hover {
+    background: #9274BD;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 650px) {
+    .character-nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .character-nav a {
+        width: 100%;
+        padding: 13px 10px;
+        font-size: 14px;
+    }
+}
+
+
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+</style>
+</head>
+
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+
+<body>
+
+<header>
+    <img src="images/logo.png" alt="癒しの国での日常" class="site-logo">
+</header>
+
+<main>
+
+<div class="page-title">
+    <h1>シオン・ヴィオレ</h1>
+    <p>SHION VIOLET</p>
+</div>
+
+<section class="profile">
+
+    <div>
+        <img
+            src="images/characters/passion/sheets/シオン.jpg"
+            alt="シオン・ヴィオレのキャラクターシート"
+            class="character-sheet">
+    </div>
+
+    <div>
+        <h2 class="name">シオン・ヴィオレ</h2>
+        <p class="catchcopy">天真爛漫な主人公</p>
+
+        <table>
+            <tr><td>モチーフ</td><td>紫（色）</td></tr>
+            <tr><td>種族</td><td>人間</td></tr>
+            <tr><td>年齢</td><td>18歳</td></tr>
+            <tr><td>性別</td><td>女</td></tr>
+            <tr><td>身長</td><td>167cm</td></tr>
+            <tr><td>出身地</td><td>パシオン街</td></tr>
+            <tr><td>誕生日</td><td>5月6日</td></tr>
+            <tr><td>所属</td><td>魔法学園</td></tr>
+            <tr><td>専攻</td><td>黒魔法</td></tr>
+        </table>
+    </div>
+
+</section>
+
+<section class="section">
+    <h2>人物紹介</h2>
+    <p>
+        明るくて天真爛漫。
+        どんな事があってもポジティブに生きることがモットー。
+    </p>
+</section>
+
+<section class="section">
+    <h2>サンプルボイス</h2>
+    <div class="voice">
+        「シオン、今行きますよ〜！みんなついてきて〜！」
+    </div>
+</section>
+
+
+<section class="section">
+    <h2>Gallery</h2>
+    <p>シオン・ヴィオレのイラストギャラリー</p>
+
+    <div class="gallery">
+        <img src="images/characters/passion/gallery/shion/shion_01.jpg" onclick="openImage(this.src)" alt="シオンのイラスト1">
+        <img src="images/characters/passion/gallery/shion/shion_02.jpg" onclick="openImage(this.src)" alt="シオンのイラスト2">
+        <img src="images/characters/passion/gallery/shion/shion_03.jpg" onclick="openImage(this.src)" alt="シオンのイラスト3">
+        <img src="images/characters/passion/gallery/shion/shion_04.png" onclick="openImage(this.src)" alt="シオンのイラスト4">
+        <img src="images/characters/passion/gallery/shion/shion_05.png" onclick="openImage(this.src)" alt="シオンのイラスト5">
+        <img src="images/characters/passion/gallery/shion/shion_06.png" onclick="openImage(this.src)" alt="シオンのイラスト6">
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeImage()">
+    <span class="lightbox-close">×</span>
+    <img id="lightbox-image" src="" alt="拡大画像" onclick="event.stopPropagation()">
+</div>
+
+
+<div class="character-nav">
+    <a href="residents.html" class="back">住人名鑑へ戻る</a>
+    <a href="aoi.html" class="next">次のキャラクター：アオイ →</a>
+</div>
+
+</main>
+
+<footer>
+    © 癒しの国での日常
+</footer>
+
+
+<script>
+function openImage(src) {
+    document.getElementById("lightbox-image").src = src;
+    document.getElementById("lightbox").classList.add("show");
+}
+
+function closeImage() {
+    document.getElementById("lightbox").classList.remove("show");
+}
+</script>
+
+
+</body>
+</html>

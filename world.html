@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界案内｜癒しの国での日常</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f7ef;
+      color: #405d49;
+      font-family: "Yu Gothic", sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header img {
+      width: min(75%, 380px);
+      height: auto;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 25px 0 35px;
+    }
+
+    .page-title h1 {
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 5px;
+    }
+
+    .page-title p {
+      color: #78977c;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    .content {
+      width: min(90%, 950px);
+      margin: auto;
+    }
+
+    .map {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+      margin: 25px auto;
+    }
+
+    .country {
+      background: #fffef8;
+      border: 1px solid #d5e3d4;
+      border-radius: 14px;
+      padding: 25px;
+      margin: 30px 0;
+      line-height: 2;
+    }
+
+    .country img {
+      width: 110px;
+      display: block;
+      margin: 15px auto;
+    }
+
+    .back {
+      display: block;
+      width: fit-content;
+      margin: 45px auto;
+      padding: 12px 30px;
+      color: #47775c;
+      text-decoration: none;
+      border: 1px solid #d5e3d4;
+      border-radius: 30px;
+      background: #fffef8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #8ba28b;
+      font-size: 12px;
+    }
+
+.country-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #47775C;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.country-link:hover {
+    color: #83B58B;
+    transform: translateX(4px);
+}
+
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+@media (max-width: 600px) {
+    .content {
+        width: 94%;
+    }
+
+    .country {
+        padding: 16px;
+    }
+
+    .country p {
+        font-size: 14px;
+        line-height: 1.9;
+    }
+}
+
+  </style>
+</head>
+
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="癒しの国での日常">
+  </header>
+
+  <section class="page-title">
+    <p>WORLD GUIDE</p>
+    <h1>世界案内</h1>
+  </section>
+
+  <main class="content">
+
+    <img src="images/world_map.jpg" alt="世界の地図" class="map">
+
+   <section class="country">
+    <h2>コンソラトゥール国</h2>
+    <img src="images/flag_consolatour.jpg" alt="コンソラトゥール国の国旗">
+
+    <p>
+        癒しを与える、穏やかで平和な国。<br>
+        『癒しの国での日常』の物語の中心となる、メインの国です。
+    </p>
+
+    <a href="academy.html" class="country-link">
+        魔法学園について詳しく見る →
+    </a>
+
+<a href="residents.html#consolatour" class="country-link">
+    住人を見る →
+</a>
+
+</section>
+
+
+<section class="country">
+  <h2>フィルマ島</h2>
+  <p>
+    神紀時代から空に浮かび続けている、不思議な島。
+    <br>
+    かつては数多くの神々や天使たちが暮らしており、
+    神聖な存在が集う場所として知られていた。
+    <br>
+    静安時代を迎えた現在では、天使たちが主な住人となっている。
+    島の管理は、神紀時代からこの島にいる管理女神・オネ様が担っている。
+    2000年以上の時を生きるオネ様は、今もこの天空の島を見守り続けている。
+  </p>
+
+<a href="residents.html#filma" class="country-link">
+    住人を見る →
+</a>
+
+</section>
+
+<section class="country">
+  <h2>アンラン国</h2>
+  <p>
+    コンソラトゥール国の地下に存在する、広大な地下国。
+    <br>
+    国土は大きく二つのエリアに分かれており、
+    冥土エリアと、悪魔族が暮らすデビルエリアが存在する。
+    <br>
+    それぞれ異なる区域として分かれており、
+    両エリアを行き来できる人物はごく一部に限られている。
+    <br>
+    現在は管理神であるハルート様が、この国を管理している。
+  </p>
+
+<a href="residents.html#anran" class="country-link">
+    住人を見る →
+</a>
+
+</section>
+
+<section class="country">
+  <h2>ラブト国</h2>
+  <p>
+    コンソラトゥール国の南に位置する、異国情緒あふれるアラビアンな国。
+    <br>
+    商人や踊り子が多く暮らしており、
+    活気ある市場や華やかな文化が特徴的。
+    さまざまな品物や文化が行き交う、賑やかな国として知られている。
+    <br>
+    なお、戦記時代には「カーブース国」と呼ばれていた。
+  </p>
+
+<a href="residents.html#labuto" class="country-link">
+    住人を見る →
+</a>
+
+</section>
+
+
+<section class="country">
+  <h2>パンタシア国</h2>
+  <p>かつて存在した幻の国。177年前、戦争に敗れて没落しました。</p>
+</section>
+
+    <a href="index.html" class="back">トップページへ戻る</a>
+
+  </main>
+
+  <footer>
+    癒しの国での日常
+  </footer>
+
+</body>
+</html>

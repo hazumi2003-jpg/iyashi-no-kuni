@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>住人名鑑｜癒しの国での日常</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f7ef;
+      color: #405d49;
+      font-family: "Yu Gothic", sans-serif;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header img {
+      width: min(75%, 380px);
+      height: auto;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 25px 0 40px;
+    }
+
+    .page-title p {
+      color: #78977c;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    .page-title h1 {
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 5px;
+    }
+
+    /* 検索エリア */
+    .search-area {
+      width: min(92%, 850px);
+      margin: 0 auto 45px;
+      padding: 28px;
+      background: #fffef8;
+      border: 1px solid #d5e3d4;
+      border-radius: 18px;
+      box-shadow: 0 3px 10px rgba(71, 119, 92, 0.06);
+    }
+
+    .search-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .search-title p {
+      color: #78977c;
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin: 0 0 6px;
+    }
+
+    .search-title h2 {
+      font-size: 21px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      margin: 0;
+    }
+
+    .search-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 17px 20px;
+    }
+
+    .search-item {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .search-item label {
+      font-size: 13px;
+      color: #587b60;
+      letter-spacing: 1px;
+    }
+
+    .search-item input,
+    .search-item select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #d5e3d4;
+      border-radius: 9px;
+      background: #fdfdf8;
+      color: #405d49;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-item input:focus,
+    .search-item select:focus {
+      border-color: #83aa8b;
+      box-shadow: 0 0 0 2px rgba(131, 170, 139, 0.12);
+    }
+
+    .range-inputs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .range-inputs input {
+      min-width: 0;
+    }
+
+    .range-inputs span {
+      color: #78977c;
+      font-size: 13px;
+    }
+
+    .search-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .search-buttons button {
+      padding: 11px 28px;
+      border-radius: 25px;
+      font-family: inherit;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .search-button {
+      border: 1px solid #57946d;
+      background: #57946d;
+      color: white;
+    }
+
+    .reset-button {
+      border: 1px solid #d5e3d4;
+      background: #fffef8;
+      color: #47775c;
+    }
+
+    .search-buttons button:hover {
+      opacity: 0.8;
+      transform: translateY(-2px);
+    }
+
+    .result-count {
+      text-align: center;
+      margin-top: 20px;
+      color: #78977c;
+      font-size: 13px;
+    }
+
+    .town-heading {
+      text-align: center;
+      margin: 45px 0 30px;
+    }
+
+    .town-heading h2 {
+      font-size: 23px;
+      font-weight: 500;
+      letter-spacing: 3px;
+    }
+
+    .town-heading p {
+      color: #78977c;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .resident-list {
+      width: min(92%, 850px);
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .resident-card {
+      text-align: center;
+      padding: 22px 12px;
+      background: #fffef8;
+      border: 1px solid #d5e3d4;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(71, 119, 92, 0.06);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .resident-card img {
+      width: 115px;
+      height: 115px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #e0eadc;
+    }
+
+    .resident-card h3 {
+      font-size: 17px;
+      font-weight: 500;
+      margin: 14px 0 6px;
+      letter-spacing: 2px;
+    }
+
+    .resident-card p {
+      font-size: 12px;
+      color: #78977c;
+      margin: 0;
+    }
+
+    .resident-card h3,
+    .resident-card p {
+      text-decoration: none;
+    }
+
+    .resident-card[hidden] {
+      display: none;
+    }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      color: #78977c;
+      padding: 35px 15px;
+      font-size: 14px;
+    }
+
+    .back {
+      display: block;
+      width: fit-content;
+      margin: 50px auto;
+      padding: 12px 30px;
+      color: #47775c;
+      text-decoration: none;
+      border: 1px solid #d5e3d4;
+      border-radius: 30px;
+      background: #fffef8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #8ba28b;
+      font-size: 12px;
+    }
+
+    /* TOPへ戻るボタン */
+    #back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: #57946D;
+      color: #FFFFFF;
+      font-size: 25px;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+      z-index: 1000;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    #back-to-top:hover {
+      transform: translateY(-4px);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (max-width: 600px) {
+      .search-area {
+        padding: 22px 17px;
+      }
+
+      .search-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .resident-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .resident-card img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .search-buttons button {
+        padding: 10px 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="癒しの国での日常">
+  </header>
+
+  <section class="page-title">
+    <p>RESIDENTS GUIDE</p>
+    <h1>住人名鑑</h1>
+  </section>
+
+  <!-- 住人検索 -->
+  <section class="search-area">
+
+    <div class="search-title">
+      <p>RESIDENTS SEARCH</p>
+      <h2>住人を探す</h2>
+    </div>
+
+    <div class="search-grid">
+
+      <div class="search-item">
+        <label for="search-name">名前</label>
+        <input type="text" id="search-name" placeholder="名前を入力">
+      </div>
+
+      <div class="search-item">
+        <label for="search-birthday">誕生月</label>
+        <select id="search-birthday">
+          <option value="">すべて</option>
+          <option value="1">1月</option>
+          <option value="2">2月</option>
+          <option value="3">3月</option>
+          <option value="4">4月</option>
+          <option value="5">5月</option>
+          <option value="6">6月</option>
+          <option value="7">7月</option>
+          <option value="8">8月</option>
+          <option value="9">9月</option>
+          <option value="10">10月</option>
+          <option value="11">11月</option>
+          <option value="12">12月</option>
+        </select>
+      </div>
+
+      <div class="search-item">
+        <label>年齢</label>
+        <div class="range-inputs">
+          <input type="number" id="age-min" placeholder="下限" min="0">
+          <span>〜</span>
+          <input type="number" id="age-max" placeholder="上限" min="0">
+        </div>
+      </div>
+
+      <div class="search-item">
+        <label>身長（cm）</label>
+        <div class="range-inputs">
+          <input type="number" id="height-min" placeholder="下限" min="0">
+          <span>〜</span>
+          <input type="number" id="height-max" placeholder="上限" min="0">
+        </div>
+      </div>
+
+      <div class="search-item">
+        <label for="search-species">種族</label>
+        <select id="search-species">
+          <option value="">すべて</option>
+          <option value="人間">人間</option>
+          <option value="星空猫族">星空猫族</option>
+          <option value="機械人形">機械人形</option>
+        </select>
+      </div>
+
+      <div class="search-item">
+        <label for="search-gender">性別</label>
+        <select id="search-gender">
+          <option value="">すべて</option>
+          <option value="女">女</option>
+          <option value="男">男</option>
+          <option value="中性">中性</option>
+        </select>
+      </div>
+
+      <div class="search-item">
+        <label for="search-origin">出身地</label>
+        <select id="search-origin">
+          <option value="">すべて</option>
+          <option value="パシオン街">パシオン街</option>
+          <option value="希望街">希望街</option>
+          <option value="夢見街">夢見街</option>
+          <option value="パーミチ街">パーミチ街</option>
+          <option value="コンソラトゥール都市">コンソラトゥール都市</option>
+          <option value="フィルマ島">フィルマ島</option>
+          <option value="アンラン国">アンラン国</option>
+          <option value="ラブト国">ラブト国</option>
+          <option value="レヴリー村">レヴリー村</option>
+        </select>
+      </div>
+
+      <div class="search-item">
+        <label for="search-job">職業・専攻</label>
+        <select id="search-job">
+          <option value="">すべて</option>
+          <option value="黒魔法">黒魔法</option>
+          <option value="賢者">賢者</option>
+          <option value="魔女">魔女</option>
+          <option value="お嬢様">お嬢様</option>
+          <option value="召喚士">召喚士</option>
+          <option value="魔法剣士">魔法剣士</option>
+          <option value="魔法女騎士">魔法女騎士</option>
+          <option value="預言者">預言者</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="search-buttons">
+      <button type="button" class="search-button" id="search-button">検索する</button>
+      <button type="button" class="reset-button" id="reset-button">リセット</button>
+    </div>
+
+    <p class="result-count" id="result-count" aria-live="polite">
+      51人の住人が登録されています
+    </p>
+
+  </section>
+
+  <section class="town-heading">
+    <h2 id="passion">パシオン街 / PASSION</h2>
+    <p>PASSION</p>
+  </section>
+
+  <main class="resident-list">
+
+    <a href="shion.html" class="resident-card"
+       data-name="シオン" data-birthday="5" data-age="18"
+       data-height="167" data-species="人間" data-gender="女"
+       data-origin="パシオン街" data-job="黒魔法">
+      <img src="images/characters/passion/icons/シオン.jpg" alt="シオン">
+      <h3>シオン</h3>
+      <p>主人公</p>
+    </a>
+
+    <a href="aoi.html" class="resident-card"
+       data-name="アオイ" data-birthday="7" data-age="18"
+       data-height="176" data-species="人間" data-gender="男"
+       data-origin="パシオン街" data-job="賢者">
+      <img src="images/characters/passion/icons/アオイ.jpg" alt="アオイ">
+      <h3>アオイ</h3>
+      <p>主人公の幼なじみ</p>
+    </a>
+
+    <a href="etoile.html" class="resident-card"
+       data-name="エトワール" data-birthday="10" data-age="20"
+       data-height="158" data-species="星空猫族" data-gender="女"
+       data-origin="パシオン街" data-job="魔女">
+      <img src="images/characters/passion/icons/エトワール.jpg" alt="エトワール">
+      <h3>エトワール</h3>
+      <p>星空猫の魔女</p>
+    </a>
+
+    <a href="mireille.html" class="resident-card"
+       data-name="ミレーユ" data-birthday="1" data-age="24"
+       data-height="165" data-species="人間" data-gender="女"
+       data-origin="パシオン街" data-job="お嬢様">
+      <img src="images/characters/passion/icons/ミレーユ.jpg" alt="ミレーユ">
+      <h3>ミレーユ</h3>
+      <p>漆黒の花嫁</p>
+    </a>
+
+    <a href="blanche.html" class="resident-card"
+       data-name="ブランシュ" data-birthday="1" data-age="17"
+       data-height="167" data-species="人間" data-gender="女"
+       data-origin="パシオン街" data-job="召喚士">
+      <img src="images/characters/passion/icons/ブランシュ.jpg" alt="ブランシュ">
+      <h3>ブランシュ</h3>
+      <p>ネガティブな召喚士</p>
+    </a>
+
+    <a href="lucis.html" class="resident-card"
+       data-name="ルシス" data-birthday="1" data-age="18"
+       data-height="173" data-species="人間" data-gender="男"
+       data-origin="パシオン街" data-job="魔法剣士">
+      <img src="images/characters/passion/icons/ルシス.jpg" alt="ルシス">
+      <h3>ルシス</h3>
+      <p>ナルシストな魔法剣士</p>
+    </a>
+
+    <a href="brule.html" class="resident-card"
+       data-name="ブリュレ" data-birthday="10" data-age="21"
+       data-height="169" data-species="人間" data-gender="女"
+       data-origin="パシオン街" data-job="魔法女騎士">
+      <img src="images/characters/passion/icons/ブリュレ.jpg" alt="ブリュレ">
+      <h3>ブリュレ</h3>
+      <p>炎の魔法女騎士</p>
+    </a>
+
+    <a href="fessy.html" class="resident-card"
+       data-name="フェシー" data-birthday="7" data-age="22"
+       data-height="171" data-species="人間" data-gender="中性"
+       data-origin="パシオン街" data-job="預言者">
+      <img src="images/characters/passion/icons/フェシー.jpg" alt="フェシー">
+      <h3>フェシー</h3>
+      <p>主人公に嫉妬する預言者</p>
+    </a>
+
+    <a href="rui.html" class="resident-card"
+       data-name="ルイ" data-birthday="3" data-age=""
+       data-height="167" data-species="機械人形" data-gender="男"
+       data-origin="パシオン街" data-job="">
+      <img src="images/characters/passion/icons/ルイ.jpg" alt="ルイ">
+      <h3>ルイ</h3>
+      <p>人間に憧れる機械人形</p>
+    </a>
+
+  </main>
+
+
+  <!-- 希望街 -->
+  <section class="town-heading">
+    <h2 id="xiwan">希望街 / XIWAN</h2>
+    <p>XI WAN</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="青 海深 チン ハイシェン"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/ハイシェン.jpg" alt="青 海深">
+      <h3>青 海深</h3>
+      <p>主人公の友人</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="朱 暁明 ジュ シァミン"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/シァミン.jpg" alt="朱 暁明">
+      <h3>朱 暁明</h3>
+      <p>正義感ある魔法剣士</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="林 紅花 リン ホンファ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/ホンファ.jpg" alt="林 紅花">
+      <h3>林 紅花</h3>
+      <p>偉大なる龍の子</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="趙 光龙 チョウ グンロン"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/グンロン.jpg" alt="趙 光龙">
+      <h3>趙 光龙</h3>
+      <p>雷使いの剣闘士</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="趙 雲嵐 チョウ ウンラン"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/ウンラン.jpg" alt="趙 雲嵐">
+      <h3>趙 雲嵐</h3>
+      <p>嵐のような銃士</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="沈 青蔚 シン チンウェイ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/チンウェイ.jpg" alt="沈 青蔚">
+      <h3>沈 青蔚</h3>
+      <p>ツンデレな魔法剣士</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="夏 桜綾 カ ヨウリン"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/ヨウリン.jpg" alt="夏 桜綾">
+      <h3>夏 桜綾</h3>
+      <p>キュートなチャイナガール</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="葉 麗霞 ヨウ リーシャ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/xiwan/icons/リーシャ.jpg" alt="葉 麗霞">
+      <h3>葉 麗霞</h3>
+      <p>オオカミの召喚士</p>
+    </div>
+
+  </main>
+
+
+  <!-- 夢見街 -->
+  <section class="town-heading">
+    <h2 id="yumemi">夢見街 / YUMEMI</h2>
+    <p>YUMEMI</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="朱膳寺 朱桜 シュゼンジ スオウ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/スオウ.jpg" alt="朱膳寺 朱桜">
+      <h3>朱膳寺 朱桜</h3>
+      <p>気まぐれ小説家</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="春島 桜 ハルジマ サクラ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/サクラ.jpg" alt="春島 桜">
+      <h3>春島 桜</h3>
+      <p>桜のような美しいお嬢様</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="菊池 光司 キクチ コウジ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/コウジ.jpg" alt="菊池 光司">
+      <h3>菊池 光司</h3>
+      <p>こだわり派の料理人</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="荒井 風舞 アライ フウマ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/フウマ.jpg" alt="荒井 風舞">
+      <h3>荒井 風舞</h3>
+      <p>風使いの不器用クール</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="朱膳寺 茜 シュゼンジ アカネ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/アカネ.jpg" alt="朱膳寺 茜">
+      <h3>朱膳寺 茜</h3>
+      <p>朱桜の編集者であり嫁</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="神馬 榆 シンバ ニレ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/ニレ.jpg" alt="神馬 榆">
+      <h3>神馬 榆</h3>
+      <p>サボり魔な一角獣</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="三宅 たま ミヤケ タマ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/タマ.jpg" alt="三宅 たま">
+      <h3>三宅 たま</h3>
+      <p>おっとり三毛猫</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="夢藤 奏音 ムトウ カナデ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/カナデ.jpg" alt="夢藤 奏音">
+      <h3>夢藤 奏音</h3>
+      <p>夢予言の巫女の後継者</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="蒼狐 瑠璃 ソウコ ルリ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/ルリ.jpg" alt="蒼狐 瑠璃">
+      <h3>蒼狐 瑠璃</h3>
+      <p>蒼き狐の医学者志望</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="赤狐 楓 セキコ カエデ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/カエデ.jpg" alt="赤狐 楓">
+      <h3>赤狐 楓</h3>
+      <p>赤き狐の神社の守り主</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="冬月 千鶴 フユツキ チヅル"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/チヅル.jpg" alt="冬月 千鶴">
+      <h3>冬月 千鶴</h3>
+      <p>ファッションリーダーな鶴</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="三宅 すず ミヤケ スズ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/スズ.jpg" alt="三宅 すず">
+      <h3>三宅 すず</h3>
+      <p>三毛猫猫又のお面コレクター</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="紫川 陽花 シカワ ヨウカ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/ヨウカ.jpg" alt="紫川 陽花">
+      <h3>紫川 陽花</h3>
+      <p>紫陽花のような大人しい使用人</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="稲光 白夜 イナミツ ビャクヤ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/ビャクヤ.jpg" alt="稲光 白夜">
+      <h3>稲光 白夜</h3>
+      <p>情報誌の配達人</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="藤野 京 フジノ ミヤコ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="夢見街" data-job="">
+      <img src="images/characters/Yumemi/Icons/ミヤコ.jpg" alt="藤野 京">
+      <h3>藤野 京</h3>
+      <p>布面の不思議な語り手師</p>
+    </div>
+
+  </main>
+
+
+  <!-- パーミチ街 -->
+  <section class="town-heading">
+    <h2 id="pamichi">パーミチ街 / PAMICHI</h2>
+    <p>PAMICHI</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="アンドレイ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="パーミチ街" data-job="">
+      <img src="images/characters/pamichi/icons/アンドレイ.jpg" alt="アンドレイ">
+      <h3>アンドレイ</h3>
+      <p>優しい雪男</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="ダイアナ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="パーミチ街" data-job="">
+      <img src="images/characters/pamichi/icons/ダイアナ.jpg" alt="ダイアナ">
+      <h3>ダイアナ</h3>
+      <p>雪国の宿屋の元気な少女</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="ノエル"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="パシオン街" data-job="">
+      <img src="images/characters/pamichi/icons/ノエル.jpg" alt="ノエル">
+      <h3>ノエル</h3>
+      <p>聖なる日の赤き花のトナカイ</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="ガリーナ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="パーミチ街" data-job="">
+      <img src="images/characters/pamichi/icons/ガリーナ.jpg" alt="ガリーナ">
+      <h3>ガリーナ</h3>
+      <p>雪国の羊族の少女</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="毛 翠蘭 モウスイラン"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="希望街" data-job="">
+      <img src="images/characters/pamichi/icons/スイラン.jpg" alt="毛 翠蘭">
+      <h3>毛 翠蘭</h3>
+      <p>翡翠のような静かな短刀術師</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="クローリー"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="パーミチ街" data-job="">
+      <img src="images/characters/pamichi/icons/クローリー.jpg" alt="クローリー">
+      <h3>クローリー</h3>
+      <p>古代魔法研究家の雪兎</p>
+    </div>
+
+  </main>
+
+    <!-- コンソラトゥール都市 -->
+  <section class="town-heading">
+    <h2 id="consolatour">コンソラトゥール都市 / CONSOLATOUR</h2>
+    <p>CONSOLATOUR</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="ボワレ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="コンソラトゥール都市" data-job="">
+      <img src="images/characters/consolatour/icons/ボワレ.jpg" alt="ボワレ">
+      <h3>ボワレ</h3>
+      <p>癒しの国の優しい王様</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="フォイユ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="コンソラトゥール都市" data-job="">
+      <img src="images/characters/consolatour/icons/フォイユ.jpg" alt="フォイユ">
+      <h3>フォイユ</h3>
+      <p>癒しの国の優しい女王様</p>
+    </div>
+
+    <div class="resident-card"
+         data-name="シエル"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="コンソラトゥール都市" data-job="">
+      <img src="images/characters/consolatour/icons/シエル.jpg" alt="シエル">
+      <h3>シエル</h3>
+      <p>癒しの国の大人しい王子様</p>
+    </div>
+
+  </main>
+
+  <!-- フィルマ島 -->
+  <section class="town-heading">
+    <h2 id="filma">フィルマ島 / FILMA</h2>
+    <p>FILMA</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="レナ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="フィルマ島" data-job="">
+      <img src="images/characters/filma/icons/レナ.jpg" alt="レナ">
+      <h3>レナ</h3>
+    </div>
+
+    <div class="resident-card"
+         data-name="オネ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="フィルマ島" data-job="">
+      <img src="images/characters/filma/icons/オネ.jpg" alt="オネ">
+      <h3>オネ</h3>
+    </div>
+
+  </main>
+
+  <!-- アンラン国 -->
+  <section class="town-heading">
+    <h2 id="anran">アンラン国 / ANRAN</h2>
+    <p>ANRAN</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="メディ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="アンラン国" data-job="">
+      <img src="images/characters/anran/icons/メディ.jpg" alt="メディ">
+      <h3>メディ</h3>
+    </div>
+
+    <div class="resident-card"
+         data-name="ハルート"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="アンラン国" data-job="">
+      <img src="images/characters/anran/icons/ハルート.jpg" alt="ハルート">
+      <h3>ハルート</h3>
+    </div>
+
+    <div class="resident-card"
+         data-name="ティアー"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="アンラン国" data-job="">
+      <img src="images/characters/anran/icons/ティアー.jpg" alt="ティアー">
+      <h3>ティアー</h3>
+    </div>
+
+  </main>
+
+    <!-- ラブト国 -->
+  <section class="town-heading">
+    <h2 id="labuto">ラブト国 / LABUTO</h2>
+    <p>LABUTO</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="ヤーコート"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="ラブト国" data-job="">
+      <img src="images/characters/labuto/icons/ヤーコート.jpg" alt="ヤーコート">
+      <h3>ヤーコート</h3>
+    </div>
+
+    <div class="resident-card"
+         data-name="ハルアズ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="ラブト国" data-job="">
+      <img src="images/characters/labuto/icons/ハルアズ.jpg" alt="ハルアズ">
+      <h3>ハルアズ</h3>
+    </div>
+
+  </main>
+
+    <!-- レヴリー村 -->
+  <section class="town-heading">
+    <h2 id="revry">レヴリー村 / REVRY</h2>
+    <p>REVRY</p>
+  </section>
+
+  <main class="resident-list">
+
+    <div class="resident-card"
+         data-name="ソレーユ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="レヴリー村" data-job="">
+      <img src="images/characters/revry/icons/ソレーユ.jpg" alt="ソレーユ">
+      <h3>ソレーユ</h3>
+    </div>
+
+    <div class="resident-card"
+         data-name="リュンヌ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="レヴリー村" data-job="">
+      <img src="images/characters/revry/icons/リュンヌ.jpg" alt="リュンヌ">
+      <h3>リュンヌ</h3>
+    </div>
+
+    <div class="resident-card"
+         data-name="サージュ"
+         data-birthday="" data-age="" data-height=""
+         data-species="" data-gender=""
+         data-origin="レヴリー村" data-job="">
+      <img src="images/characters/revry/icons/サージュ.jpg" alt="サージュ">
+      <h3>サージュ</h3>
+    </div>
+
+  </main>
+
+  <p class="no-results" id="no-results">
+    条件に合う住人は見つかりませんでした。
+  </p>
+
+  <a href="index.html" class="back">トップページへ戻る</a>
+
+  <footer>
+    癒しの国での日常
+  </footer>
+
+  <button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+  </button>
+
+  <script>
+    const cards = document.querySelectorAll(".resident-card");
+
+    const searchName = document.getElementById("search-name");
+    const searchBirthday = document.getElementById("search-birthday");
+    const ageMin = document.getElementById("age-min");
+    const ageMax = document.getElementById("age-max");
+    const heightMin = document.getElementById("height-min");
+    const heightMax = document.getElementById("height-max");
+    const searchSpecies = document.getElementById("search-species");
+    const searchGender = document.getElementById("search-gender");
+    const searchOrigin = document.getElementById("search-origin");
+    const searchJob = document.getElementById("search-job");
+
+    const resultCount = document.getElementById("result-count");
+    const noResults = document.getElementById("no-results");
+
+    function searchResidents() {
+      const name = searchName.value.trim().toLowerCase();
+      const birthday = searchBirthday.value;
+      const minAge = ageMin.value === "" ? null : Number(ageMin.value);
+      const maxAge = ageMax.value === "" ? null : Number(ageMax.value);
+      const minHeight = heightMin.value === "" ? null : Number(heightMin.value);
+      const maxHeight = heightMax.value === "" ? null : Number(heightMax.value);
+
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const data = card.dataset;
+
+        const age = data.age === "" ? null : Number(data.age);
+        const height = Number(data.height);
+
+        const matches =
+          (!name || data.name.toLowerCase().includes(name)) &&
+          (!birthday || data.birthday === birthday) &&
+          (minAge === null || (age !== null && age >= minAge)) &&
+          (maxAge === null || (age !== null && age <= maxAge)) &&
+          (minHeight === null || height >= minHeight) &&
+          (maxHeight === null || height <= maxHeight) &&
+          (!searchSpecies.value || data.species === searchSpecies.value) &&
+          (!searchGender.value || data.gender === searchGender.value) &&
+          (!searchOrigin.value || data.origin === searchOrigin.value) &&
+          (!searchJob.value || data.job === searchJob.value);
+
+        card.hidden = !matches;
+
+        if (matches) {
+          visibleCount++;
+        }
+      });
+
+      resultCount.textContent =
+        visibleCount + "人の住人が見つかりました";
+
+      noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+    }
+
+    document.getElementById("search-button")
+      .addEventListener("click", searchResidents);
+
+    document.getElementById("reset-button")
+      .addEventListener("click", () => {
+        searchName.value = "";
+        searchBirthday.value = "";
+        ageMin.value = "";
+        ageMax.value = "";
+        heightMin.value = "";
+        heightMax.value = "";
+        searchSpecies.value = "";
+        searchGender.value = "";
+        searchOrigin.value = "";
+        searchJob.value = "";
+
+        searchResidents();
+      });
+
+    document.getElementById("back-to-top")
+      .addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+  </script>
+
+</body>
+</html>
+

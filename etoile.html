@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>シャノ・エトワール | 癒しの国での日常</title>
+
+<style>
+:root {
+    --main: #D98236;
+    --light: #F5D8B7;
+    --pale: #FFF3E5;
+    --text: #493C35;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    background: #F7F7EF;
+    color: var(--text);
+    line-height: 1.8;
+}
+
+header {
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.site-logo {
+    width: min(80%, 500px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 25px 0 40px;
+}
+
+.page-title h1 {
+    color: var(--main);
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.page-title p {
+    color: #B58A68;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    align-items: start;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(75, 55, 35, 0.07);
+}
+
+.sheet {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.profile-info h2 {
+    color: var(--main);
+    border-bottom: 2px solid var(--light);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #F0E8DF;
+    text-align: left;
+}
+
+th {
+    color: var(--main);
+    width: 32%;
+    font-weight: 600;
+}
+
+.section {
+    margin-top: 45px;
+}
+
+.section h2 {
+    color: var(--main);
+    border-left: 5px solid var(--main);
+    padding-left: 13px;
+    margin-bottom: 20px;
+}
+
+.intro, .voice, .species-card {
+    background: white;
+    padding: 22px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(75, 55, 35, 0.05);
+}
+
+.voice {
+    background: var(--pale);
+    color: #A65D26;
+    font-size: 18px;
+}
+
+.species-card img {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    margin: 25px auto 0;
+    border-radius: 12px;
+}
+
+.species-card p {
+    margin: 0 0 15px;
+}
+
+/* CHARACTER STORY */
+.story-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(75, 55, 35, 0.05);
+}
+
+.story-title {
+    text-align: center;
+    color: var(--main);
+    font-size: 23px;
+    margin: 0 0 8px;
+}
+
+.story-author {
+    text-align: center;
+    color: #B58A68;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.story-body {
+    line-height: 2.2;
+    overflow-wrap: anywhere;
+}
+
+.story-body p {
+    margin: 0 0 20px;
+}
+
+.story-end {
+    text-align: center;
+    color: var(--main);
+    margin-top: 35px !important;
+    letter-spacing: 2px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.gallery img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 18px rgba(75, 55, 35, 0.18);
+}
+
+.music-card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(75, 55, 35, 0.05);
+}
+
+.music-card p {
+    margin: 0;
+}
+
+.music-note {
+    color: #B58A68;
+    font-size: 13px;
+    margin-top: 10px !important;
+}
+
+.character-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.character-nav a {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.character-nav .prev,
+.character-nav .back {
+    background: #F5E9DC;
+    color: #895C38;
+}
+
+.character-nav .back {
+    margin: 0;
+}
+
+.character-nav .next {
+    background: var(--main);
+    color: white;
+}
+
+.character-nav a:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+@media (max-width: 650px) {
+    .character-nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .character-nav a {
+        width: 100%;
+        padding: 13px 10px;
+        font-size: 14px;
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #999;
+    font-size: 13px;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 20, 30, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+@media (max-width: 650px) {
+    .profile {
+        grid-template-columns: 1fr;
+    }
+
+    .sheet {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-title h1 {
+        font-size: 25px;
+    }
+
+    .story-card {
+        padding: 22px 18px;
+    }
+
+    .story-title {
+        font-size: 20px;
+    }
+}
+
+.movie-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.movie-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #57946D;
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+</style>
+</head>
+
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+
+<body>
+
+<header>
+    <img src="images/logo.png" alt="癒しの国での日常" class="site-logo">
+</header>
+
+<main>
+
+    <div class="page-title">
+        <h1>エトワール・シャノ</h1>
+        <p>ETOILE CHANO</p>
+    </div>
+
+    <section class="profile">
+        <div>
+            <img
+                src="images/characters/passion/sheets/エトワール.jpg"
+                alt="エトワールのキャラクターシート"
+                class="sheet">
+        </div>
+
+        <div class="profile-info">
+            <h2>PROFILE</h2>
+
+            <table>
+                <tr><th>名前</th><td>エトワール・シャノ</td></tr>
+                <tr><th>モチーフ</th><td>星と黒猫</td></tr>
+                <tr><th>種族</th><td>黒猫族（星空猫族）</td></tr>
+                <tr><th>年齢</th><td>20歳</td></tr>
+                <tr><th>身長</th><td>158cm</td></tr>
+                <tr><th>出身地</th><td>パシオン街</td></tr>
+                <tr><th>誕生日</th><td>10月25日</td></tr>
+                <tr><th>属性</th><td>星属性</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>INTRODUCTION</h2>
+        <div class="intro">
+            <p>星属性の魔女猫。</p>
+            <p>ノリのいい黒猫族の女の子。</p>
+            <p>星空猫の血が流れており、魔法が星属性。星空猫にしか使えない。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>SAMPLE VOICE</h2>
+        <div class="voice">
+            「ああ〜眠いな〜猫なもんでな〜」
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>SPECIES / 星空猫族</h2>
+
+        <div class="species-card">
+            <p>
+                星空猫は黒猫、灰色猫の中に極稀に生まれます。
+            </p>
+
+            <p>
+                その属性は必ず星属性の魔法が使えます。
+            </p>
+
+            <p>
+                だから親が普通の猫族の人でも、子が星空猫になることもある。
+            </p>
+
+            <img
+                src="images/characters/passion/gallery/etoile/hoshizora_lineage.jpg"
+                alt="星空猫の由来と系譜">
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>CHARACTER STORY</h2>
+
+        <div class="story-card">
+            <h3 class="story-title">『星空に溶け込んで。』</h3>
+            <div class="story-author">シャノ・エトワール</div>
+
+            <div class="story-body">
+
+                <p>この国には人間だけじゃなく、獣人や、竜人などと、人外もいた。</p>
+
+                <p>パシオン街に住む黒猫族の家族が居た。</p>
+
+                <p>そこに産まれた子供は、猫族の中では珍しい星空猫だった。</p>
+
+                <p>両親は驚き、大切に育てた。</p>
+
+                <p>そして大きくなった彼女は世間で言う10歳に、この国の中心部、コンソラトゥール都市の魔法学園に入学した。</p>
+
+                <p>彼女は生き生きしていた。</p>
+
+                <p>先生「シャノ。今日はまた優秀だったわね」</p>
+
+                <p>エトワール「ありがとうございます」</p>
+
+                <p>微笑み、お礼を言った。</p>
+
+                <p>そんな学園の生活は、とても楽しく過ごしていた。</p>
+
+                <p>ある日の夜、外で休んでいたとき、</p>
+
+                <p>とてもきれいな星空が彼女の目に映った。</p>
+
+                <p>思わず手を空に差し伸べると、</p>
+
+                <p>瞬く間に、一面の流星群が流れていった。</p>
+
+                <p>彼女は驚き、恐怖さえ感じた。</p>
+
+                <p>「この力は、あまり使えない。」</p>
+
+                <p>そう思った。</p>
+
+                <p>しかし次第に自分の魔法は星属性になってくことは</p>
+
+                <p>わかっていた。</p>
+
+                <p>その頃には、周りは、気づいてないにしろ、</p>
+
+                <p>彼女は、徐々に周りから離れるようになった。</p>
+
+                <p>しかし、学園の中庭でとある少年に出会った。</p>
+
+                <p>額には、角が生えていて、</p>
+
+                <p>珍しいと思った。</p>
+
+                <p>エトワール「…君は？」</p>
+
+                <p>彼に声をかけた。</p>
+
+                <p>榆「んあ？んだよお前……俺は榆」</p>
+
+                <p>少し不機嫌そうな声色だった</p>
+
+                <p>おそらく、勉強をしていたのだろう</p>
+
+                <p>魔物やドラゴンの図鑑を手に持っていた</p>
+
+                <p>榆「なんか用か？」</p>
+
+                <p>エトワール「…いえ、珍しい角だと思いまして…。気になっただけ。」</p>
+
+                <p>不安な笑顔をした。</p>
+
+                <p>榆「角？………あー……お前も人外なんやな。いい耳してんな」</p>
+
+                <p>彼は少しニッと笑った</p>
+
+                <p>エトワール「あっうんありがとう…あっ私エトワール。ちなみに黒猫に見えるけど、少し違うの。」</p>
+
+                <p>なんだか彼には別に言ってもいいと思えたのは、何故なのか。</p>
+
+                <p>自分でも分かってなかった。</p>
+
+                <p>エトワール「星空猫って言われてるの。まあだから私も？珍しいわけなんだけど…」</p>
+
+                <p>多分、聞いてもないこと、聞かされて何だこの人とか思ってんだろうけど。</p>
+
+                <p>エトワール「ごめん…なんか…急に…」</p>
+
+                <p>榆「星空猫ええやん」</p>
+
+                <p>ぱたんと本を閉じ、頬杖を着いた</p>
+
+                <p>榆「俺にお前だけの魔法見してくれや」</p>
+
+                <p>エトワール「え！」</p>
+
+                <p>その言葉は、彼女にとっては救われたのであった。</p>
+
+                <p>それからは、彼を見つけたら、自分のことを話すようになり、彼も、色々と聞かせてくれた。</p>
+
+                <p>二人は、親友となり、</p>
+
+                <p>今も、彼女が卒業してもどこかしらで話をしたりしていた。</p>
+
+                <p>空を見上げると、彼がどこかで飛んでるのも、私の魔法も、</p>
+
+                <p>すべてこの空の中にあることに、</p>
+
+                <p>なんだか嬉しく思っていた。</p>
+
+                <p>今は、自分のことを大切に、愛せるようになってる。</p>
+
+                <p>夜が深まり、あの日の流星群のように、</p>
+
+                <p>輝ける自分に。</p>
+
+                <p>シャノ・エトワール、キャラクターストーリー。</p>
+
+                <p class="story-end">End.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>GALLERY</h2>
+        <div class="gallery">
+            <img src="images/characters/passion/gallery/etoile/etoile_01.jpg" alt="エトワールのイラスト1" onclick="openLightbox(this.src)">
+            <img src="images/characters/passion/gallery/etoile/etoile_02.jpg" alt="エトワールのイラスト2" onclick="openLightbox(this.src)">
+            <img src="images/characters/passion/gallery/etoile/etoile_03.png" alt="エトワールのイラスト3" onclick="openLightbox(this.src)">
+            <img src="images/characters/passion/gallery/etoile/etoile_04.png" alt="エトワールのイラスト4" onclick="openLightbox(this.src)">
+        </div>
+    </section>
+
+   <section class="section">
+    <h2>MUSIC / IMAGE SONG</h2>
+    <div class="music-card">
+        <p>エトワールのイメージソングMV</p>
+
+        <div class="movie-container">
+            <iframe
+                src="https://www.youtube.com/embed/kdY2LyqszIc"
+                title="エトワール イメージソングMV"
+
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</section>
+
+    <div class="character-nav">
+        <a href="aoi.html" class="prev">← 前のキャラクター：アオイ</a>
+        <a href="residents.html" class="back">住人名鑑へ戻る</a>
+        <a href="mireille.html" class="next">次のキャラクター：ミレーユ →</a>
+    </div>
+
+</main>
+
+<footer>
+    癒しの国での日常
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-image" src="" alt="拡大画像">
+</div>
+
+<script>
+function openLightbox(src) {
+    document.getElementById("lightbox-image").src = src;
+    document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
