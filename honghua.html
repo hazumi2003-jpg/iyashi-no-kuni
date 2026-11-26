@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>林 紅花 | 癒しの国での日常</title>
+
+<style>
+:root {
+    --main: #A8323E;
+    --light: #D9A5A5;
+    --pale: #F3E8E3;
+    --navy: #263653;
+    --text: #493C42;
+    --gold: #D7B66D;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Yu Gothic", "Meiryo", sans-serif;
+    background: #F7F7EF;
+    color: var(--text);
+    line-height: 1.8;
+}
+
+header {
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.site-logo {
+    width: min(80%, 500px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin: 25px 0 40px;
+}
+
+.page-title h1 {
+    color: var(--main);
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.page-title p {
+    color: var(--navy);
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 30px;
+    align-items: start;
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(75, 55, 35, 0.07);
+    border-top: 4px solid var(--main);
+}
+
+.sheet {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.profile-info h2 {
+    color: var(--main);
+    border-bottom: 2px solid var(--light);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #F0E8DF;
+    text-align: left;
+}
+
+th {
+    color: var(--main);
+    width: 32%;
+    font-weight: 600;
+}
+
+.section {
+    margin-top: 45px;
+}
+
+.section h2 {
+    color: var(--main);
+    border-left: 5px solid var(--main);
+    padding-left: 13px;
+    margin-bottom: 20px;
+}
+
+.intro, .voice, .species-card {
+    background: white;
+    padding: 22px 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(75, 55, 35, 0.05);
+}
+
+.voice {
+    background: var(--pale);
+    color: var(--navy);
+    font-size: 18px;
+    border-left: 4px solid var(--gold);
+}
+
+.species-card p {
+    margin: 0 0 15px;
+}
+
+/* CHARACTER STORY */
+.story-card {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(75, 55, 35, 0.05);
+    border-top: 3px solid var(--navy);
+}
+
+.story-title {
+    text-align: center;
+    color: var(--main);
+    font-size: 23px;
+    margin: 0 0 8px;
+}
+
+.story-author {
+    text-align: center;
+    color: var(--navy);
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.story-body {
+    line-height: 2.2;
+    overflow-wrap: anywhere;
+}
+
+.story-body p {
+    margin: 0 0 20px;
+}
+
+.story-end {
+    text-align: center;
+    color: var(--main);
+    margin-top: 35px !important;
+    letter-spacing: 2px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 2px solid var(--pale);
+}
+
+.gallery img:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 18px rgba(75, 55, 35, 0.18);
+}
+
+.music-card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(75, 55, 35, 0.05);
+    border-top: 3px solid var(--navy);
+}
+
+.music-card p {
+    margin: 0;
+}
+
+.music-note {
+    color: var(--navy);
+    font-size: 13px;
+    margin-top: 10px !important;
+}
+
+.movie-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-top: 20px;
+    background: var(--navy);
+}
+
+.movie-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.character-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.character-nav a {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.2s;
+    background: var(--navy);
+    color: white;
+}
+
+.character-nav a:hover {
+    transform: translateY(-3px);
+    opacity: 0.85;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #999;
+    font-size: 13px;
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 20, 30, 0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* TOPへ戻るボタン */
+#back-to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: var(--main);
+    color: #FFFFFF;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 650px) {
+    .profile {
+        grid-template-columns: 1fr;
+    }
+
+    .sheet {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-title h1 {
+        font-size: 25px;
+    }
+
+    .story-card {
+        padding: 22px 18px;
+    }
+
+    .story-title {
+        font-size: 20px;
+    }
+
+    .character-nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .character-nav a {
+        width: 100%;
+        padding: 13px 10px;
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<button id="back-to-top" aria-label="ページの一番上へ戻る">
+    ↑
+</button>
+
+<script>
+document.getElementById("back-to-top").addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
+
+<header>
+    <img src="images/logo.png" alt="癒しの国での日常" class="site-logo">
+</header>
+
+<main>
+
+    <div class="page-title">
+        <h1>林 紅花</h1>
+        <p>LIN HONGHUA</p>
+    </div>
+
+    <section class="profile">
+        <div>
+            <img
+                src="images/characters/xiwan/sheets/ホンファ.jpg"
+                alt="紅花のキャラクターシート"
+                class="sheet">
+        </div>
+
+        <div class="profile-info">
+            <h2>PROFILE</h2>
+
+            <table>
+                <tr><th>名前</th><td>林 紅花</td></tr>
+                <tr><th>読み方</th><td>リン ホンファ</td></tr>
+                <tr><th>モチーフ</th><td>龍</td></tr>
+                <tr><th>種族</th><td>龍人</td></tr>
+                <tr><th>年齢</th><td>不明</td></tr>
+                <tr><th>身長</th><td>152cm</td></tr>
+                <tr><th>出身地</th><td>希望街</td></tr>
+                <tr><th>誕生日</th><td>8月2日</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>INTRODUCTION</h2>
+        <div class="intro">
+            <p>希望街の龍人。</p>
+            <p>口調がお年寄り。見た目はロリ。</p>
+            <p>変身できる。</p>
+            <p>基本的に寺で過ごしている。</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>SAMPLE VOICE</h2>
+        <div class="voice">
+            「なんじゃ？遊びたいとな？いいぞ。」
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>PAST / HISTORY</h2>
+
+        <div class="story-card">
+            <h3 class="story-title">紅い龍の過去</h3>
+            <div class="story-author">林 紅花</div>
+
+            <div class="story-body">
+
+                <p>過去は希望街に存在してた大きな龍だった。</p>
+
+                <p>赤く美しい龍だった。</p>
+
+                <p>その龍は、高い山の上でゆっくり過ごしてた。</p>
+
+                <p>そんな龍には、仲の良い友人たちがいた。</p>
+
+                <p>白い凛々しい虎と黄色い綺麗な鳳凰がいた。</p>
+
+                <p>その3匹たちは、希望街の空を見つめ楽しく過ごしてた。</p>
+
+                <p>しかし、ある時代が来る。そう、戦記時代。</p>
+
+                <p>3匹たちは自ら、この街をそれぞれ守った。</p>
+
+                <p>しかし残ったのは赤い龍のみ。</p>
+
+                <p>虎と鳳凰は、居なくなってしまった。</p>
+
+                <p>悲しみに暮れる龍は、その時代が終わったのち、姿を消した。</p>
+
+                <p>そして、静安時代、とある少女が、現れた。</p>
+
+                <p>見た目は若い女子だが、どう見ても角と尻尾が生えており、見かけた人は、きっとどこかの仙人だろうと言われる。</p>
+
+                <p>誰もその子があの赤い龍だと思わないのだった。</p>
+
+                <p class="story-end">End.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>GALLERY</h2>
+
+        <div class="gallery">
+            <img src="images/characters/xiwan/gallery/honghua/honghua_01.jpg"
+                 alt="紅花のイラスト1"
+                 onclick="openLightbox(this.src)">
+
+            <img src="images/characters/xiwan/gallery/honghua/honghua_02.JPG"
+                 alt="紅花のイラスト2"
+                 onclick="openLightbox(this.src)">
+
+            <img src="images/characters/xiwan/gallery/honghua/honghua_03.JPG"
+                 alt="紅花のイラスト3"
+                 onclick="openLightbox(this.src)">
+
+            <img src="images/characters/xiwan/gallery/honghua/honghua_04.jpg"
+                 alt="紅花のイラスト4"
+                 onclick="openLightbox(this.src)">
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>MUSIC / IMAGE SONG</h2>
+
+        <div class="music-card">
+            <p>紅花のイメージソングMV</p>
+
+            <div class="movie-container">
+                <iframe
+                    src="https://www.youtube.com/embed/asstjTr6yxg"
+                    title="林 紅花 イメージソングMV"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <p class="music-note">
+                ※動画が再生できない場合は、YouTube側の設定をご確認ください。
+            </p>
+        </div>
+    </section>
+
+    <div class="character-nav">
+        <a href="residents.html" class="back">住人名鑑へ戻る</a>
+    </div>
+
+</main>
+
+<footer>
+    癒しの国での日常
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-image" src="" alt="拡大画像">
+</div>
+
+<script>
+function openLightbox(src) {
+    document.getElementById("lightbox-image").src = src;
+    document.getElementById("lightbox").style.display = "flex";
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
